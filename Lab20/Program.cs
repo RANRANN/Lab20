@@ -9,6 +9,7 @@ namespace Lab20
     internal class Program
     {
         delegate double MyDelegate();
+        delegate double MyDelegate2(double r);
 
         static void Main(string[] args)
         {
@@ -24,8 +25,8 @@ namespace Lab20
             Console.WriteLine(myDelegate2?.Invoke());
             Console.WriteLine();
 
-            MyDelegate myDelegate3 = GetVolume;
-            Console.WriteLine(myDelegate3?.Invoke());
+            MyDelegate2 myDelegate3 = GetVolume;
+            Console.WriteLine($"Объём шара радиусом 5 единиц = { myDelegate3?.Invoke(5)}");
             Console.ReadKey();
         }
         static double GetLength()
@@ -40,13 +41,6 @@ namespace Lab20
             double r = Convert.ToDouble(Console.ReadLine());
             return Math.PI * Math.Pow(r, 2);
         }
-        static double GetVolume()
-        {
-            Console.Write("Введите радиус круга ");
-            double r = Convert.ToDouble(Console.ReadLine());
-            return 4 / 3 * Math.PI * Math.Pow(r, 3);
-        }
-
-
+        static double GetVolume(double r) => 4 / 3 * Math.PI * Math.Pow(r, 3);
     }
 }
